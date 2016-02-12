@@ -8,6 +8,8 @@ import java.util.Iterator;
  * @author Ben Lawton
  * @author Khadija Patel
  * @author Jordan Bird
+ * 
+ * @version 12/02/2016
  */
 public class GameController<T> {
 
@@ -28,7 +30,9 @@ public class GameController<T> {
         currentPlayer = player1;
     }
     
-
+/**
+ * Show the available positions for the player and then highlights them onscreen
+ */
     public static void showCurrentPlayerMoves() {
     	Position position = board.getPosition(currentPlayer.getX(), currentPlayer.getY());
     	ArrayList<Position> availablePositions = board.getOccupiablePositions(position);
@@ -42,6 +46,8 @@ public class GameController<T> {
     }
 
     /**
+     * Allows the active player to place a wall providing they have walls
+     * 
      * @param pos1X
      * @param pos1Y
      * @param pos1Border
@@ -78,6 +84,11 @@ public class GameController<T> {
     	}
     }
 
+    /**
+     * Move a player to a specified position
+     * @param posX the x co-ordinate of the move
+     * @param posY the y co-ordinate of the move
+     */
     public static void movePawn(int posX, int posY) {
     	if (currentPlayer == player1) {
     		if (posX == player2.getX() && posY == player2.getY()) {
@@ -119,11 +130,21 @@ public class GameController<T> {
     		}
     	}
     }
-
+    
+/**
+ * Process the gameover
+ */
     public static void gameOver() {
     	System.exit(0);
     }
 
+    /**
+     * Check if a player is allowed to move to a position 
+     * @param player the active player to check against 
+     * @param newX the new co-ordinate to move to 
+     * @param newY the new co-ordinate to move to 
+     * @return player can or cannot move to speicified position
+     */
     public static boolean isValidMove(Player player, int newX, int newY) {
     	boolean isValid = false;
     	// if the move is directly along the x axis
@@ -151,7 +172,9 @@ public class GameController<T> {
     	return isValid;
     }
 
-
+/**
+ * Reset the game as a new game
+ */
     private static void resetGame() {
     	gui.updatePlayer1MoveCount(0);
     	player1.setMoveCount(0);
@@ -171,11 +194,21 @@ public class GameController<T> {
     	gui.resetWalls();
     }
 
+    /**
+     * Execute the winning sequence for a player 
+     * @param player	winner
+     */
     private static void gameOver(Player player) {
     	//gui.winner(player);
     	System.exit(0);
     }
 
+    /**
+     * Assign a wall a given position
+     * 
+     * @param position the position of the wall
+     * @param location Enum category of wall direction
+     */
     private static void assignWall(Position position, PositionWallLocation location) {
     	switch (location) {
 	    	case LEFT: {
@@ -197,6 +230,9 @@ public class GameController<T> {
     	}
     }
 
+    /**
+     * Make the next player the active player 
+     */
     private static void changePlayer() {
     	if (currentPlayer == player1) {
     		currentPlayer = player2;
