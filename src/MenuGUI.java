@@ -22,6 +22,8 @@ import javax.sound.midi.SysexMessage;
 /**
  * @author Junaid Rasheed
  * @author Jordan Bird
+ * 
+ * @version 12/02/2016
  */
 public class MenuGUI extends Application {
 
@@ -51,6 +53,9 @@ public class MenuGUI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * create the pane for the title
+     */
     public void setIntroPane() {
         introPane.setAlignment(Pos.CENTER);
         introPane.setHgap(25);
@@ -62,7 +67,7 @@ public class MenuGUI extends Application {
     }
 
     /**
-     * 
+     * Create the buttons for the menu and set their properties
      */
     public void setButtons() {
         buttonBox.setPadding(new Insets(15, 15, 15, 15));
